@@ -26,21 +26,15 @@ header h1 {
 
 .subtitle {
   margin: 0.6rem auto 0;
-  max-width: 700px;
+  max-width: 760px;
   color: #ddd;
   font-size: 0.95rem;
 }
 
 main {
-  max-width: 900px;
+  max-width: 760px;
   margin: auto;
   padding: 1.5rem 1rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1rem;
 }
 
 .card {
@@ -56,7 +50,7 @@ main {
   margin-bottom: 0.6rem;
   padding-bottom: 0.4rem;
   border-bottom: 2px solid #ddd;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .help {
@@ -73,7 +67,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ccc;
@@ -87,10 +82,12 @@ textarea {
 textarea {
   min-height: 90px;
   resize: vertical;
+  font-family: "Courier New", monospace;
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: none;
   border-color: #0077cc;
   box-shadow: 0 0 0 2px rgba(0, 119, 204, 0.12);
@@ -104,7 +101,7 @@ textarea:focus {
 }
 
 .row button {
-  flex: 1;
+  flex: 1 1 140px;
 }
 
 button {
@@ -123,7 +120,8 @@ button:hover {
   transform: translateY(-1px);
 }
 
-.result {
+.result,
+.bit-panel {
   margin-top: 1rem;
   padding: 1rem;
   background-color: #f9f9f9;
@@ -141,6 +139,108 @@ button:hover {
   color: #0077cc;
 }
 
+.bit-panel h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+.bit-legend {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.legend-item {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.sign {
+  background-color: #333;
+}
+
+.exponent {
+  background-color: #0077cc;
+}
+
+.mantissa {
+  background-color: #2e8b57;
+}
+
+.bit-display {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.bit {
+  display: inline-block;
+  padding: 0.45rem 0.55rem;
+  border-radius: 8px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  background-color: #fff;
+}
+
+.sign-bit {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+.exponent-bit {
+  background-color: #e8f3ff;
+  color: #005fa3;
+  border-color: #b7d9f7;
+}
+
+.mantissa-bit {
+  background-color: #e9f7ef;
+  color: #237447;
+  border-color: #b9e3ca;
+}
+
+.bits-empty {
+  color: #888;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.field-grid.secondary {
+  margin-top: 0.75rem;
+}
+
+.field-box {
+  background-color: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+.field-title {
+  font-size: 0.82rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+}
+
+.field-value {
+  font-size: 0.95rem;
+  font-weight: bold;
+  word-break: break-word;
+}
+
 footer {
   padding: 0.9rem;
   text-align: center;
@@ -151,11 +251,15 @@ footer {
 }
 
 @media (max-width: 700px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
   .row {
     flex-direction: column;
+  }
+
+  .bit-display {
+    gap: 0.3rem;
+  }
+
+  .bit {
+    font-size: 0.88rem;
   }
 }

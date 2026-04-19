@@ -3,71 +3,107 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>32-bit Binary / Decimal Converter</title>
+  <title>32-bit Bit Pattern Converter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>32-bit Binary / Decimal Converter</h1>
+    <h1>32-bit Bit Pattern Converter</h1>
     <p class="subtitle">
-      Convert signed 32-bit integers and 32-bit floating-point values between decimal and binary.
+      Convert between Int32, Float32, Binary, and Hex using the same 32-bit pattern.
     </p>
   </header>
 
   <main>
-    <div class="grid">
-      <section class="card">
-        <h2>Signed Int32 Converter</h2>
-        <p class="help">Enter a decimal integer or a 32-bit binary value.</p>
+    <section class="card">
+      <h2>Converter</h2>
+      <p class="help">
+        Pick which field to calculate from, enter a value, then click Calculate.
+      </p>
 
-        <label for="intDecimal">Decimal integer</label>
-        <input id="intDecimal" type="text" placeholder="Example: -42" />
+      <label for="sourceSelect">Calculate from</label>
+      <select id="sourceSelect">
+        <option value="int">Int32</option>
+        <option value="float">Float32</option>
+        <option value="binary">Binary</option>
+        <option value="hex">Hex</option>
+      </select>
 
-        <label for="intBinary">Binary (32 bits)</label>
-        <textarea
-          id="intBinary"
-          placeholder="Example: 11111111111111111111111111010110"
-        ></textarea>
+      <label for="intInput">Int32</label>
+      <input id="intInput" type="text" placeholder="Example: 1065353216" />
 
-        <div class="row">
-          <button id="intDecToBin">Decimal → Binary</button>
-          <button id="intBinToDec">Binary → Decimal</button>
-          <button id="intToFloatBits">Int Bits → Float</button>
-          <button id="intClear">Clear</button>
+      <label for="floatInput">Float32</label>
+      <input id="floatInput" type="text" placeholder="Example: 1" />
+
+      <label for="binaryInput">Binary (32 bits)</label>
+      <textarea id="binaryInput" placeholder="Example: 0011 1111 1000 0000 0000 0000 0000 0000"></textarea>
+
+      <label for="hexInput">Hex</label>
+      <input id="hexInput" type="text" placeholder="Example: 3F800000" />
+
+      <div class="row">
+        <button id="calculateBtn">Calculate</button>
+        <button id="clearAll">Clear</button>
+      </div>
+
+      <div class="result">
+        <p><strong>Int:</strong> <span id="outInt">—</span></p>
+        <p><strong>Float:</strong> <span id="outFloat">—</span></p>
+        <p><strong>Binary:</strong> <span id="outBinary">—</span></p>
+        <p><strong>Hex:</strong> <span id="outHex">—</span></p>
+      </div>
+
+      <div class="row">
+        <button id="copyBinary" data-label="Copy Binary">Copy Binary</button>
+        <button id="copyBinarySpaced" data-label="Copy Binary (Spaced)">Copy Binary (Spaced)</button>
+        <button id="copyHex" data-label="Copy Hex">Copy Hex</button>
+        <button id="copyInt" data-label="Copy Int">Copy Int</button>
+      </div>
+
+      <div class="bit-panel">
+        <h3>IEEE 754 Float32 Breakdown</h3>
+
+        <div class="bit-legend">
+          <span class="legend-item sign">Sign</span>
+          <span class="legend-item exponent">Exponent</span>
+          <span class="legend-item mantissa">Mantissa</span>
         </div>
 
-        <div class="result">
-          <p><strong>Decimal:</strong> <span id="intOutDecimal">—</span></p>
-          <p><strong>Binary:</strong> <span id="intOutBinary">—</span></p>
-          <p><strong>As Float32:</strong> <span id="intOutFloat">—</span></p>
-        </div>
-      </section>
-
-      <section class="card">
-        <h2>Float32 Converter</h2>
-        <p class="help">Enter a decimal real number or a 32-bit IEEE 754 binary value.</p>
-
-        <label for="floatDecimal">Decimal float</label>
-        <input id="floatDecimal" type="text" placeholder="Example: 3.14" />
-
-        <label for="floatBinary">Binary (32 bits)</label>
-        <textarea
-          id="floatBinary"
-          placeholder="Example: 01000000010010001111010111000011"
-        ></textarea>
-
-        <div class="row">
-          <button id="floatDecToBin">Decimal → Binary</button>
-          <button id="floatBinToDec">Binary → Decimal</button>
-          <button id="floatClear">Clear</button>
+        <div class="bit-display" id="bitDisplay">
+          <span class="bits-empty">—</span>
         </div>
 
-        <div class="result">
-          <p><strong>Decimal:</strong> <span id="floatOutDecimal">—</span></p>
-          <p><strong>Binary:</strong> <span id="floatOutBinary">—</span></p>
+        <div class="field-grid">
+          <div class="field-box">
+            <div class="field-title">Sign</div>
+            <div class="field-value" id="signValue">—</div>
+          </div>
+          <div class="field-box">
+            <div class="field-title">Exponent</div>
+            <div class="field-value" id="exponentValue">—</div>
+          </div>
+          <div class="field-box">
+            <div class="field-title">Mantissa</div>
+            <div class="field-value" id="mantissaValue">—</div>
+          </div>
         </div>
-      </section>
-    </div>
+
+        <div class="field-grid secondary">
+          <div class="field-box">
+            <div class="field-title">Exponent (decimal)</div>
+            <div class="field-value" id="exponentDecimal">—</div>
+          </div>
+          <div class="field-box">
+            <div class="field-title">Unbiased exponent</div>
+            <div class="field-value" id="unbiasedExponent">—</div>
+          </div>
+          <div class="field-box">
+            <div class="field-title">Float class</div>
+            <div class="field-value" id="floatClass">—</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
