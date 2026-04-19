@@ -24,17 +24,22 @@
         <input id="intDecimal" type="text" placeholder="Example: -42" />
 
         <label for="intBinary">Binary (32 bits)</label>
-        <textarea id="intBinary" placeholder="Example: 11111111111111111111111111010110"></textarea>
+        <textarea
+          id="intBinary"
+          placeholder="Example: 11111111111111111111111111010110"
+        ></textarea>
 
         <div class="row">
           <button id="intDecToBin">Decimal → Binary</button>
           <button id="intBinToDec">Binary → Decimal</button>
+          <button id="intToFloatBits">Int Bits → Float</button>
           <button id="intClear">Clear</button>
         </div>
 
         <div class="result">
           <p><strong>Decimal:</strong> <span id="intOutDecimal">—</span></p>
           <p><strong>Binary:</strong> <span id="intOutBinary">—</span></p>
+          <p><strong>As Float32:</strong> <span id="intOutFloat">—</span></p>
         </div>
       </section>
 
@@ -46,7 +51,10 @@
         <input id="floatDecimal" type="text" placeholder="Example: 3.14" />
 
         <label for="floatBinary">Binary (32 bits)</label>
-        <textarea id="floatBinary" placeholder="Example: 01000000010010001111010111000011"></textarea>
+        <textarea
+          id="floatBinary"
+          placeholder="Example: 01000000010010001111010111000011"
+        ></textarea>
 
         <div class="row">
           <button id="floatDecToBin">Decimal → Binary</button>

@@ -37,6 +37,32 @@ function intFromBinary() {
   document.getElementById("intDecimal").value = signed;
 }
 
+function intBitsToFloat() {
+  let binary = cleanBinary(document.getElementById("intBinary").value);
+
+  if (!/^[01]{32}$/.test(binary)) {
+    const value = Number(document.getElementById("intDecimal").value);
+
+    if (!Number.isInteger(value) || value < -2147483648 || value > 2147483647) {
+      alert("Enter a valid 32-bit signed integer or 32-bit binary value.");
+      return;
+    }
+
+    binary = (value >>> 0).toString(2).padStart(32, "0");
+    document.getElementById("intBinary").value = binary;
+    document.getElementById("intOutDecimal").textContent = value;
+    document.getElementById("intOutBinary").textContent = formatBinary(binary);
+  }
+
+  const buffer = new ArrayBuffer(4);
+  const view = new DataView(buffer);
+
+  view.setUint32(0, parseInt(binary, 2));
+  const floatValue = view.getFloat32(0);
+
+  document.getElementById("intOutFloat").textContent = floatValue;
+}
+
 function floatFromDecimal() {
   const value = Number(document.getElementById("floatDecimal").value);
 
@@ -79,6 +105,7 @@ function clearInt() {
   document.getElementById("intBinary").value = "";
   document.getElementById("intOutDecimal").textContent = "—";
   document.getElementById("intOutBinary").textContent = "—";
+  document.getElementById("intOutFloat").textContent = "—";
 }
 
 function clearFloat() {
@@ -90,6 +117,7 @@ function clearFloat() {
 
 document.getElementById("intDecToBin").addEventListener("click", intFromDecimal);
 document.getElementById("intBinToDec").addEventListener("click", intFromBinary);
+document.getElementById("intToFloatBits").addEventListener("click", intBitsToFloat);
 document.getElementById("intClear").addEventListener("click", clearInt);
 
 document.getElementById("floatDecToBin").addEventListener("click", floatFromDecimal);
