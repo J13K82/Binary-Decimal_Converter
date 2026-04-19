@@ -1,0 +1,161 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 1.8rem 1rem 1rem;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.subtitle {
+  margin: 0.6rem auto 0;
+  max-width: 700px;
+  color: #ddd;
+  font-size: 0.95rem;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 1.5rem 1rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  margin: 0;
+  padding: 1.1rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #ddd;
+  font-size: 1.4rem;
+}
+
+.help {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 0 2px rgba(0, 119, 204, 0.12);
+}
+
+.row {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.row button {
+  flex: 1;
+}
+
+button {
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #444;
+  transform: translateY(-1px);
+}
+
+.result {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #e2e2e2;
+}
+
+.result p {
+  margin: 0.45rem 0;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
+.result strong {
+  color: #0077cc;
+}
+
+footer {
+  padding: 0.9rem;
+  text-align: center;
+  background-color: #222;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>32-bit Binary / Decimal Converter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>32-bit Binary / Decimal Converter</h1>
+    <p class="subtitle">
+      Convert signed 32-bit integers and 32-bit floating-point values between decimal and binary.
+    </p>
+  </header>
+
+  <main>
+    <div class="grid">
+      <section class="card">
+        <h2>Signed Int32 Converter</h2>
+        <p class="help">Enter a decimal integer or a 32-bit binary value.</p>
+
+        <label for="intDecimal">Decimal integer</label>
+        <input id="intDecimal" type="text" placeholder="Example: -42" />
+
+        <label for="intBinary">Binary (32 bits)</label>
+        <textarea id="intBinary" placeholder="Example: 11111111111111111111111111010110"></textarea>
+
+        <div class="row">
+          <button id="intDecToBin">Decimal → Binary</button>
+          <button id="intBinToDec">Binary → Decimal</button>
+          <button id="intClear">Clear</button>
+        </div>
+
+        <div class="result">
+          <p><strong>Decimal:</strong> <span id="intOutDecimal">—</span></p>
+          <p><strong>Binary:</strong> <span id="intOutBinary">—</span></p>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Float32 Converter</h2>
+        <p class="help">Enter a decimal real number or a 32-bit IEEE 754 binary value.</p>
+
+        <label for="floatDecimal">Decimal float</label>
+        <input id="floatDecimal" type="text" placeholder="Example: 3.14" />
+
+        <label for="floatBinary">Binary (32 bits)</label>
+        <textarea id="floatBinary" placeholder="Example: 01000000010010001111010111000011"></textarea>
+
+        <div class="row">
+          <button id="floatDecToBin">Decimal → Binary</button>
+          <button id="floatBinToDec">Binary → Decimal</button>
+          <button id="floatClear">Clear</button>
+        </div>
+
+        <div class="result">
+          <p><strong>Decimal:</strong> <span id="floatOutDecimal">—</span></p>
+          <p><strong>Binary:</strong> <span id="floatOutBinary">—</span></p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>Binary & Decimal Converter</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
