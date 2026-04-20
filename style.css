@@ -12,6 +12,15 @@ body {
   background-color: #f4f4f4;
 }
 
+a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 header {
   background-color: #222;
   color: #fff;
@@ -31,8 +40,35 @@ header h1 {
   font-size: 0.95rem;
 }
 
+.top-tabs {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  background-color: #333;
+  color: #fff;
+  transition: 0.2s ease;
+}
+
+.tab:hover {
+  background-color: #444;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.tab.active {
+  background-color: #0077cc;
+}
+
 main {
-  max-width: 760px;
+  max-width: 900px;
   margin: auto;
   padding: 1.5rem 1rem;
 }
@@ -82,6 +118,9 @@ select {
 textarea {
   min-height: 90px;
   resize: vertical;
+}
+
+#binaryInput {
   font-family: "Courier New", monospace;
 }
 
@@ -241,6 +280,156 @@ button:hover {
   word-break: break-word;
 }
 
+.top-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.top-actions button {
+  flex: 1 1 160px;
+}
+
+.batch-row {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  display: grid;
+  grid-template-columns:
+    minmax(120px, 140px)
+    minmax(120px, 140px)
+    minmax(140px, 1fr)
+    minmax(240px, 280px)
+    110px;
+  gap: 0.8rem;
+  align-items: stretch;
+}
+
+.batch-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.batch-field label {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0.35rem;
+}
+
+.batch-select,
+.batch-input {
+  width: 100%;
+  height: 44px;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.batch-output {
+  width: 100%;
+  min-height: 88px;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: "Courier New", monospace;
+  background-color: #f4f8fb;
+  color: #333;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  white-space: normal;
+}
+
+.binary-result {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.single-line-result {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+}
+
+.result-placeholder {
+  color: #888;
+  font-family: Arial, sans-serif;
+}
+
+.bit-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.bit-group {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  padding: 4px 5px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  font-family: "Courier New", monospace;
+  font-size: 0.9rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.bit1 {
+  color: #2e8b57;
+  font-weight: bold;
+}
+
+.bit0 {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.batch-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.delete-row-btn {
+  width: 100%;
+  height: 44px;
+  padding: 0.7rem 0.9rem;
+  border-radius: 999px;
+}
+
+.error-output {
+  color: #b00020;
+  border-color: #e0a4ad;
+  background-color: #fff4f6;
+  font-family: Arial, sans-serif;
+  white-space: normal;
+}
+
 footer {
   padding: 0.9rem;
   text-align: center;
@@ -248,6 +437,16 @@ footer {
   color: #fff;
   font-size: 0.9rem;
   margin-top: 2rem;
+}
+
+@media (max-width: 1100px) {
+  .batch-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .batch-actions {
+    grid-column: 1 / -1;
+  }
 }
 
 @media (max-width: 700px) {
@@ -262,4 +461,39 @@ footer {
   .bit {
     font-size: 0.88rem;
   }
+
+  .batch-row {
+    grid-template-columns: 1fr;
+  }
+
+  .batch-actions {
+    grid-column: auto;
+  }
+
+  .bit-group {
+    font-size: 0.82rem;
+    padding: 3px 4px;
+  }
+}
+
+.batch-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.copy-row-btn {
+  width: 100%;
+  height: 36px;
+  padding: 0.5rem;
+  border-radius: 999px;
+  background-color: #0077cc;
+  color: #fff;
+  border: none;
+  font-size: 0.85rem;
+}
+
+.copy-row-btn:hover {
+  background-color: #0060a8;
 }
